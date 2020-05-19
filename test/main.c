@@ -71,8 +71,14 @@ void    test_p()
 
 	//test # 3
 	str = "STR";
-	res_1 = ft_printf("%s %20p \n", "ft_printf:", str);
-    res_2 = printf("%s %23p \n", "printf:", str);
+	res_1 = ft_printf("%s %20p \n", "printf:", str);
+    res_2 = printf("%s %20p \n", "printf:", str);
+    printf("\nResult ft_printf: %d\nResult printf: %d\n\n", res_1, res_2);
+
+    //TEST # 4
+	str = NULL;
+    res_1 = ft_printf("%s %15p \n", "printf:", str);
+    res_2 = printf("%s %15p \n", "printf:", str);
     printf("\nResult ft_printf: %d\nResult printf: %d\n\n", res_1, res_2);
 }
 

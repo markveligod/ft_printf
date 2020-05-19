@@ -51,9 +51,9 @@ int		ft_print_value(char flag, t_lst list_flags, va_list argv)
 		count = ft_print_str(list_flags, argv);
 	else if (flag == 'p')
 		count = ft_print_ptr(list_flags, argv);
-	/*else if (flag == 'd' || flag == 'i')
+	else if (flag == 'd' || flag == 'i')
 		count = ft_print_int(list_flags, argv);
-	else if (flag == 'u')
+	/*else if (flag == 'u')
 		count = ft_print_unsigned(list_flags, argv);
 	else if (flag == 'x')
 		count = ft_print_hex("0123456789abcdef", list_flags, argv);

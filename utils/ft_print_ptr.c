@@ -32,6 +32,58 @@ char	*ft_convert_pointer(char *array_hex, unsigned long long number)
 	return (str);
 }
 
+int		ft_print_with_minus(char *str, int size, int count, t_lst list_flags)
+{
+	if ((ft_strncmp(str, "(nill)", size - 1)) != 0)
+	{
+		ft_putstr_fd("0x", 1);
+		ft_putstr_fd(str, 1);
+		count += (size + 2);
+		if (list_flags.width > 1)
+		{
+			ft_add_width(' ', list_flags.width - (size + 2));
+			count += list_flags.width - (size + 2);
+		}
+	}
+	else
+	{
+		ft_putstr_fd(str, 1);
+		count += size;
+		if (list_flags.width > 1)
+		{
+			ft_add_width(' ', list_flags.width - size);
+			count += list_flags.width - size;
+		}
+	}
+	return (count);
+}
+
+int		ft_print_without_minus(char *str, int size, int count, t_lst list_flags)
+{
+	if ((ft_strncmp(str, "(nill)", size - 1)) != 0)
+	{
+		if (list_flags.width > 1)
+		{
+			ft_add_width(' ', list_flags.width - (size + 2));
+			count += list_flags.width - (size + 2);
+		}
+		ft_putstr_fd("0x", 1);
+		ft_putstr_fd(str, 1);
+		count += size + 2;
+	}
+	else
+	{
+		if (list_flags.width > 1)
+		{
+			ft_add_width(' ', list_flags.width - size);
+			count += list_flags.width - size;
+		}
+		ft_putstr_fd(str, 1);
+		count += size;
+	}
+	return (count);
+}
+
 int		ft_print_ptr(t_lst list_flags, va_list argv)
 {
     char				*str;
@@ -46,21 +98,9 @@ int		ft_print_ptr(t_lst list_flags, va_list argv)
 	count = 0;
 	size = ft_strlen(str);
 	if (list_flags.minus)
-	{
-		if ((ft_strncmp(str, "(nill)", size - 1)) != 0)
-			ft_putstr_fd("0x", 1);
-		ft_putstr_fd(str, 1);
-		ft_add_width(' ', list_flags.width - (size + 2));
-	}
-	else
-	{
-		ft_add_width(' ', list_flags.width - (size + 2));
-		if ((ft_strncmp(str, "(nill)", size - 1)) != 0)
-			ft_putstr_fd("0x", 1);
-		ft_putstr_fd(str, 1);
-	}
-	count += (list_flags.width > 1) ? list_flags.width : size;
-	count += (ft_strncmp(str, "(nill)", size - 1) == 0) ? 0 : 2;
+		count += ft_print_with_minus(str, size, count, list_flags);
+	else if (!list_flags.minus)
+		count += ft_print_without_minus(str, size, count, list_flags);
 	free(str);
 	return(count);
 }
