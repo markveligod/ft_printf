@@ -14,7 +14,7 @@ CC = gcc
 NAME = libftprintf.a
 MAKE = make
 FLAGS = -Wall -Wextra -Werror
-SRCS =	./ft_printf.c ./ft_printf_utils.c ./utils/ft_print_char.c ./utils/ft_print_str.c ./utils/ft_print_ptr.c
+SRCS =	./ft_printf.c ./ft_printf_utils.c ./utils/ft_print_char.c ./utils/ft_print_str.c ./utils/ft_print_ptr.c ./utils/ft_print_int.c ./utils/ft_print_unsigned.c ./utils/ft_print_hex.c ./utils/ft_print_precent.c
 HEAD = ft_printf.h
 OBJS = $(SRCS:.c=.o)
 

@@ -24,7 +24,6 @@ typedef struct		s_lst
 	int	point;
 	int	width;
 	int	precision;
-	int	advance;
 }					t_lst;
 
 int		ft_printf(const char *str, ...);
@@ -35,5 +34,10 @@ int		ft_check_num(unsigned long long number, int size);
 int		ft_print_char(t_lst list_flags, va_list argv);
 int		ft_print_str(t_lst list_flags, va_list argv);
 int		ft_print_ptr(t_lst list_flags, va_list argv);
+int     ft_print_int(t_lst list_flags, va_list argv);
+int		ft_print_unsigned(t_lst list_flags, va_list argv);
+char	*ft_convert_pointer(char *array_hex, unsigned long long number);
+int		ft_print_hex(char *array_hex, t_lst list_flags, va_list argv);
+int     ft_print_precent(t_lst list_flags);
 
 #endif
