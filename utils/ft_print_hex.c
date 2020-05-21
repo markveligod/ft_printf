@@ -6,7 +6,7 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 08:59:30 by student           #+#    #+#             */
-/*   Updated: 2020/05/21 09:10:10 by ckakuna          ###   ########.fr       */
+/*   Updated: 2020/05/21 10:29:53 by ckakuna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,11 @@ int		print_hex_width(t_lst list_flags, int size)
 	return (count);
 }
 
-int		ft_print_hex(char *array_hex, t_lst list_flags, va_list argv)
+int		check_minus_hex(t_lst list_flags, int size, char *str)
 {
-	char			*str;
-	int				size;
-	int				count;
-	unsigned int	num;
-
+	int count;
+	
 	count = 0;
-	if (!(num = va_arg(argv, unsigned int)))
-		str = ft_strdup("0");
-	else
-		str = ft_convert_pointer(array_hex, num);
-	size = ft_strlen(str);
 	if (list_flags.minus)
 	{
 		count += check_hex_precision(list_flags, size);
@@ -67,6 +59,23 @@ int		ft_print_hex(char *array_hex, t_lst list_flags, va_list argv)
 		ft_putstr_fd(str, 1);
 		count += size;
 	}
+	return (count);
+}
+
+int		ft_print_hex(char *array_hex, t_lst list_flags, va_list argv)
+{
+	char			*str;
+	int				size;
+	int				count;
+	unsigned int	num;
+
+	count = 0;
+	if (!(num = va_arg(argv, unsigned int)))
+		str = ft_strdup("0");
+	else
+		str = ft_convert_pointer(array_hex, num);
+	size = ft_strlen(str);
+	count += check_minus_hex(list_flags, size, str);
 	free(str);
 	return (count);
 }
