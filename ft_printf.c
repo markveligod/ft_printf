@@ -6,7 +6,7 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 09:00:15 by student           #+#    #+#             */
-/*   Updated: 2020/05/21 09:09:21 by ckakuna          ###   ########.fr       */
+/*   Updated: 2020/05/21 09:28:20 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ t_lst	ft_cut_flags(const char *flag, t_lst list_flags, va_list argv)
 	{
 		if (flag[i] == '-')
 			list_flags.minus = 1;
-		else if (flag[i] == '0' && list_flags.width < 1 && list_flags.point == 0)
+		else if (flag[i] == '0' && list_flags.width < 1 &&
+				list_flags.point == 0)
 			list_flags.zero = 1;
 		else if (ft_isdigit(flag[i]) && list_flags.point == 0)
 			list_flags.width = (list_flags.width * 10) + (flag[i] - 48);
@@ -75,20 +76,19 @@ int		ft_printf(const char *str, ...)
 	i = 0;
 	count = 0;
 	va_start(argv, str);
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 	{
 		count += (str[i] == '%') ? 0 : 1;
 		if (str[i] == '%' && str[i + 1] != '\0')
 		{
-			i++;
 			list_flags = ft_init(list_flags);
-			list_flags = ft_cut_flags(&str[i], list_flags, argv);
+			list_flags = ft_cut_flags(&str[++i], list_flags, argv);
 			while (ft_check_flag(str[i]))
 				i++;
 			count += ft_print_value(str[i], list_flags, argv);
 		}
 		else
-			ft_putchar_fd(str[i], 1);		
+			ft_putchar_fd(str[i], 1);
 		i++;
 	}
 	va_end(argv);

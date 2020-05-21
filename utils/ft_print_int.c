@@ -6,13 +6,13 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 08:59:39 by student           #+#    #+#             */
-/*   Updated: 2020/05/21 09:10:06 by ckakuna          ###   ########.fr       */
+/*   Updated: 2020/05/21 09:52:27 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int		 check_add_int_width(int num, int size, t_lst list_flags)
+int		check_add_int_width(int num, int size, t_lst list_flags)
 {
 	int	count;
 
@@ -27,7 +27,8 @@ int		 check_add_int_width(int num, int size, t_lst list_flags)
 	else if (list_flags.precision >= size)
 	{
 		if (num < 0)
-			count += (ft_add_width(' ', list_flags.width - list_flags.precision - 1) - 1);
+			count += (ft_add_width(' ', list_flags.width -
+						list_flags.precision - 1) - 1);
 		else
 			count += ft_add_width(' ', list_flags.width - list_flags.precision);
 	}
@@ -90,7 +91,7 @@ int		check_minus_int(char *str, int num, int size, t_lst list_flags)
 	return (count);
 }
 
-int     ft_print_int(t_lst list_flags, va_list argv)
+int		ft_print_int(t_lst list_flags, va_list argv)
 {
 	char	*str;
 	int		size;

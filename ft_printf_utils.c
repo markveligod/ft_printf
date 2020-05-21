@@ -6,7 +6,7 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 09:00:38 by student           #+#    #+#             */
-/*   Updated: 2020/05/21 09:09:30 by ckakuna          ###   ########.fr       */
+/*   Updated: 2020/05/21 09:35:02 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_check_flag(char flag)
 {
-	return(flag == '-' || ft_isdigit(flag) || flag == '.' || flag == '*');
+	return (flag == '-' || ft_isdigit(flag) || flag == '.' || flag == '*');
 }
 
 int		ft_check_num(unsigned long long number, int size)

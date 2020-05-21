@@ -6,15 +6,15 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 08:59:45 by student           #+#    #+#             */
-/*   Updated: 2020/05/21 09:10:01 by ckakuna          ###   ########.fr       */
+/*   Updated: 2020/05/21 09:49:02 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int     ft_print_precent(t_lst list_flags)
+int		ft_print_precent(t_lst list_flags)
 {
-    int	count;
+	int count;
 
 	count = 0;
 	if (list_flags.minus)
