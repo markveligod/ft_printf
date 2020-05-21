@@ -380,15 +380,18 @@ void    test_precent()
 
     //TEST #2
     res_1 = ft_printf("Result: %20% LMAO\n");
-    printf("ft_printf: %d\n\n", res_1);
+    res_2 = printf("Result: %20% LMAO\n");
+    printf("ft_printf: %d \nprintf: %d\n\n", res_1, res_2);
 
     //TEST #3
     res_1 = ft_printf("Result: %-20% LMAO\n");
-    printf("ft_printf: %d \n\n", res_1);
+    res_2 = printf("Result: %-20% LMAO\n");
+    printf("ft_printf: %d \nprintf: %d\n\n", res_1, res_2);
 
     //TEST #4
-    res_1 = ft_printf("Result: %0.20% LMAO\n");
-    printf("ft_printf: %d \n\n", res_1);
+    res_1 = ft_printf("Result: %.2% LMAO\n");
+    res_2 = printf("Result: %.2% LMAO\n");
+    printf("ft_printf: %d \nprintf: %d\n\n", res_1, res_2);
 }
 
 int main(void)
