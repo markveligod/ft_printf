@@ -6,7 +6,7 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 08:59:39 by student           #+#    #+#             */
-/*   Updated: 2020/05/21 11:34:12 by ckakuna          ###   ########.fr       */
+/*   Updated: 2020/05/21 12:06:21 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int		check_add_int_width(int num, int size, t_lst list_flags)
 	else if (list_flags.precision >= size)
 	{
 		if (num < 0)
-			count += (ft_add_width(' ', list_flags.width -
-						list_flags.precision - 1) - 1);
+			count += ft_add_width(' ', list_flags.width -
+						list_flags.precision - 1);
 		else
 			count += ft_add_width(' ', list_flags.width - list_flags.precision);
 	}

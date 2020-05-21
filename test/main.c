@@ -203,13 +203,10 @@ void        test_d_i()
     res_2 = printf("Result: %-.0i \n", 0x77);
     printf("ft_printf: %d \nprintf: %d\n\n", res_1, res_2);
 
-    //TEST #16
-    res_1 = ft_printf("Result: %-0.6d <=> %-0.6i\n", 0x77, 0x77);
-    printf("ft_printf: %d \n\n", res_1);
-
     //TEST #17
     res_1 = ft_printf("Result: %0.16d <=> %0.16i\n", -119, -119);
-    printf("ft_printf: %d \n\n", res_1);
+	res_2 = printf("Result: %0.16d <=> %0.16i\n", -119, -119);
+    printf("ft_printf: %d\nprintf: %d \n\n", res_1, res_2);
 }
 
 void    test_u()
@@ -291,13 +288,10 @@ void    test_u()
     res_2 = printf("Result: %-.0u \n", 0x77);
     printf("ft_printf: %d \nprintf: %d\n\n", res_1, res_2);
 
-    //TEST #16
-    res_1 = ft_printf("Result: %-0.6u <=> %-0.6u\n", 0x77, 0x77);
-    printf("ft_printf: %d \n\n", res_1);
-
     //TEST #17
-    res_1 = ft_printf("Result: %0.16u <=> %0.16u\n", -119, -119);
-    printf("ft_printf: %d \n\n", res_1);
+    res_1 = ft_printf("Result: %0.16u <=> %0.17u\n", -119, -119);
+	res_2 = printf("Result: %0.16u <=> %0.17u\n", -119, -119);
+    printf("ft_printf: %d\nprintf: %d \n\n", res_1, res_2);
 }
 
 void    test_x_X()
@@ -361,12 +355,8 @@ void    test_x_X()
     //TEST #10
     i = 124124414;
     res_1 = ft_printf("Result: %0.5x - %0.6X\n", i, i);
-    printf("ft_printf: %d \n\n", res_1);
-
-    //TEST #11
-    i = 124124414;
-    res_1 = ft_printf("Result: %-0.5x - %-0.6X\n", i, i);
-    printf("ft_printf: %d \n\n", res_1);
+	res_2 = printf("Result: %0.5x - %0.6X\n", i, i);
+    printf("ft_printf: %d\n printf: %d \n\n", res_1, res_2);
 }
 
 void    test_precent()
