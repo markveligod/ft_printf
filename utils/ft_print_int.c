@@ -6,7 +6,7 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 08:59:39 by student           #+#    #+#             */
-/*   Updated: 2020/05/21 12:06:21 by student          ###   ########.fr       */
+/*   Updated: 2020/05/21 20:45:46 by ckakuna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,13 @@ int		ft_print_int(t_lst list_flags, va_list argv)
 	str = ft_itoa(num);
 	size = ft_strlen(str);
 	count = 0;
+	if (list_flags.zero && (list_flags.minus || list_flags.precision >= 0))
+		list_flags.zero = 0;
+	if (list_flags.precision == 0 && str[0] == '0')
+	{
+		count += ft_add_width(' ', list_flags.width);
+		return (count);
+	}
 	count += check_minus_int(str, num, size, list_flags);
 	free(str);
 	return (count);

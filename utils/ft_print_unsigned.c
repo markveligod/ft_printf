@@ -6,7 +6,7 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 09:00:04 by student           #+#    #+#             */
-/*   Updated: 2020/05/21 09:09:47 by ckakuna          ###   ########.fr       */
+/*   Updated: 2020/05/21 20:45:38 by ckakuna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ int		ft_print_unsigned(t_lst list_flags, va_list argv)
 	str = ft_utoa(va_arg(argv, unsigned int));
 	size = ft_strlen(str);
 	count = 0;
+	if (list_flags.precision == 0 && str[0] == '0')
+	{
+		count += ft_add_width(' ', list_flags.width);
+		return (count);
+	}
 	count += check_minus_unsig(str, size, list_flags);
 	free(str);
 	return (count);

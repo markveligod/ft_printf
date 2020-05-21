@@ -6,7 +6,7 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 08:59:30 by student           #+#    #+#             */
-/*   Updated: 2020/05/21 10:52:24 by student          ###   ########.fr       */
+/*   Updated: 2020/05/21 22:52:34 by ckakuna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,11 @@ int		ft_print_hex(char *array_hex, t_lst list_flags, va_list argv)
 	else
 		str = ft_convert_pointer(array_hex, num);
 	size = ft_strlen(str);
+	if (list_flags.precision == 0 && str[0] == '0')
+	{
+		count += ft_add_width(' ', list_flags.width);
+		return (count);
+	}
 	count += check_minus_hex(list_flags, size, str);
 	free(str);
 	return (count);
