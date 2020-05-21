@@ -163,6 +163,11 @@ void        test_d_i()
     res_2 = printf("Result: %12d <=> %21i\n", 0120, 0120);
     printf("ft_printf: %d \nprintf: %d\n\n", res_1, res_2);
 
+    //TEST #8.2
+    res_1 = ft_printf("Result: %012d <=> %012i\n", 120000, 120000);
+    res_2 = printf("Result: %012d <=> %012i\n", 120000, 120000);
+    printf("ft_printf: %d \nprintf: %d\n\n", res_1, res_2);
+
     //TEST #9
     res_1 = ft_printf("Result: %-12d <=> %-21i\n", 0120, 0120);
     res_2 = printf("Result: %-12d <=> %-21i\n", 0120, 0120);
