@@ -6,7 +6,7 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 08:59:30 by student           #+#    #+#             */
-/*   Updated: 2020/05/21 10:29:53 by ckakuna          ###   ########.fr       */
+/*   Updated: 2020/05/21 10:52:24 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		print_hex_width(t_lst list_flags, int size)
 int		check_minus_hex(t_lst list_flags, int size, char *str)
 {
 	int count;
-	
+
 	count = 0;
 	if (list_flags.minus)
 	{
