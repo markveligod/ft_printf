@@ -6,7 +6,7 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 09:00:15 by student           #+#    #+#             */
-/*   Updated: 2020/05/21 09:28:20 by student          ###   ########.fr       */
+/*   Updated: 2020/05/22 09:15:39 by ckakuna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		ft_printf(const char *str, ...)
 		}
 		else
 			ft_putchar_fd(str[i], 1);
-		i++;
+		i += (str[i] == '\0') ? 0 : 1;
 	}
 	va_end(argv);
 	return (count);
