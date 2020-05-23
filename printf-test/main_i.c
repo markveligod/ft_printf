@@ -1,7 +1,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
-#include "libftprintf.h"
+#include "../ft_printf.h"
 
 void error(int c1, int c2)
 {

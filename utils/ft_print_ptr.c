@@ -6,7 +6,7 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 08:59:53 by student           #+#    #+#             */
-/*   Updated: 2020/05/23 09:18:21 by ckakuna          ###   ########.fr       */
+/*   Updated: 2020/05/23 14:44:23 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		ft_print_ptr(t_lst list_flags, va_list argv)
 
 	num = va_arg(argv, unsigned long long);
 	if (!num)
-		str = ft_strdup("0");
+		str = (list_flags.precision == 0) ? ft_strdup("") : ft_strdup("0");
 	else
 		str = ft_convert_pointer("0123456789abcdef", num);
 	size = ft_strlen(str);

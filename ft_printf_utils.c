@@ -6,7 +6,7 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 09:00:38 by student           #+#    #+#             */
-/*   Updated: 2020/05/21 09:35:02 by student          ###   ########.fr       */
+/*   Updated: 2020/05/23 15:23:58 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,26 @@ int		ft_add_width(char c, int width)
 	return (i);
 }
 
+int		ft_print_other_flag(char flag, t_lst list_flags)
+{
+	int count;
+
+	count = 1;
+	if (list_flags.minus)
+	{
+		ft_putchar_fd(flag, 1);
+		if (list_flags.width)
+			count += ft_add_width(' ', list_flags.width - 1);
+	}
+	else if (!list_flags.minus)
+	{
+		if (list_flags.width)
+			count += ft_add_width(' ', list_flags.width - 1);
+		ft_putchar_fd(flag, 1);
+	}
+	return (count);
+}
+
 int		ft_print_value(char flag, t_lst list_flags, va_list argv)
 {
 	int count;
@@ -61,5 +81,7 @@ int		ft_print_value(char flag, t_lst list_flags, va_list argv)
 		count = ft_print_hex("0123456789ABCDEF", list_flags, argv);
 	else if (flag == '%')
 		count = ft_print_precent(list_flags);
+	else
+		count = ft_print_other_flag(flag, list_flags);
 	return (count);
 }
