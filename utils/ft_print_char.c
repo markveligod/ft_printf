@@ -6,7 +6,7 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 09:00:29 by student           #+#    #+#             */
-/*   Updated: 2020/05/21 09:09:42 by ckakuna          ###   ########.fr       */
+/*   Updated: 2020/05/22 23:44:55 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_print_char(t_lst list_flags, va_list argv)
 		return (list_flags.width);
 	}
 	else if (list_flags.minus == 0 && list_flags.width > 1)
-		ft_add_width(' ', list_flags.width - 1);
+		ft_add_width((list_flags.zero) ? '0' : ' ', list_flags.width - 1);
 	ft_putchar_fd(va_arg(argv, int), 1);
 	if (list_flags.width > 1)
 		return (list_flags.width);

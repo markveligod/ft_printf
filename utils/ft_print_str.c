@@ -6,7 +6,7 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 08:59:59 by student           #+#    #+#             */
-/*   Updated: 2020/05/21 09:50:52 by student          ###   ########.fr       */
+/*   Updated: 2020/05/22 23:50:23 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,14 @@ int		check_minus_str(char *str, int size, t_lst list_flags)
 	res_prec = check_prec(str, size, list_flags);
 	if (!list_flags.minus && list_flags.width > res_prec)
 	{
-		count += ft_add_width((list_flags.zero == 1) ? '0' : ' ',
+		count += ft_add_width((list_flags.zero) ? '0' : ' ',
 				list_flags.width - res_prec);
 		count += check_precesion_str(str, size, list_flags);
 	}
 	else if (list_flags.minus && list_flags.width > res_prec)
 	{
 		count += check_precesion_str(str, size, list_flags);
-		count += ft_add_width((list_flags.zero == 1) ? '0' : ' ',
-				list_flags.width - res_prec);
+		count += ft_add_width(' ', list_flags.width - res_prec);
 	}
 	else
 		count += check_precesion_str(str, size, list_flags);
