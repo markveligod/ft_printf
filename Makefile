@@ -32,13 +32,13 @@ $(NAME) : $(OBJS) $(HEAD)
 
 clean :
 	@rm -f $(OBJS)
-	@$(MAKE) clean -C ./Libft
+	@$(MAKE) clean -C ./libft
 	@echo "\033[90m[\033[91mDeleting\033[90m]\033[31m Object FT_PRINTF files deleted\033[0m"
 
 fclean : clean
 	@rm -f $(NAME)
 	@rm -f libft.a
-	@$(MAKE) fclean -C ./Libft
+	@$(MAKE) fclean -C ./libft
 	@echo "\033[90m[\033[91mDeleting\033[90m]\033[31m libftprintf.a deleted.\033[0m"
 
 re : fclean all
