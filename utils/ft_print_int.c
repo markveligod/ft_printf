@@ -6,13 +6,13 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 08:59:39 by student           #+#    #+#             */
-/*   Updated: 2020/05/23 08:32:16 by student          ###   ########.fr       */
+/*   Updated: 2020/05/23 09:07:50 by ckakuna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int		check_add_int_width(int num, int size, t_lst list_flags)
+int		check_width_int(t_lst list_flags, int size, int num)
 {
 	int	count;
 
@@ -21,7 +21,7 @@ int		check_add_int_width(int num, int size, t_lst list_flags)
 	{
 		if (num < 0)
 		{
-			ft_putchar_fd('-', 1);
+			write(1, "-", 1);
 			count++;
 		}
 		count += ft_add_width('0', list_flags.width - size);
@@ -29,77 +29,72 @@ int		check_add_int_width(int num, int size, t_lst list_flags)
 	else if (list_flags.precision >= size)
 	{
 		if (num < 0)
-			count += ft_add_width(' ', list_flags.width -
-						list_flags.precision - 1);
+			count += ft_add_width(' ', list_flags.width - list_flags.precision - 1);
 		else
 			count += ft_add_width(' ', list_flags.width - list_flags.precision);
 	}
-	else if (list_flags.width > 0 && list_flags.precision < size && num < 0)
-		count += (ft_add_width(' ', list_flags.width - size) - 1);
 	else
-		count += (num < 0) ? (ft_add_width(' ', list_flags.width - size) - 2) :
-			ft_add_width(' ', list_flags.width - size);
+		count += ft_add_width(' ', list_flags.width - size);
 	return (count);
 }
 
-int		print_int_precision(int num, int size, t_lst list_flags)
+int		check_precision_int(t_lst list_flags, int size, int num)
 {
+	int	i;
 	int count;
-	int i;
 
-	count = 0;
 	i = 0;
+	count = 0;
 	if (num < 0 && list_flags.precision < size && !list_flags.zero)
 	{
-		ft_putchar_fd('-', 1);
+		write(1, "-", 1);
 		return (1);
 	}
 	if (list_flags.precision > 0)
 	{
 		if (num < 0)
 		{
-			ft_putchar_fd('-', 1);
+			write(1, "-", 1);
+			count++;
 			i--;
 		}
 		while (i++ < list_flags.precision - size)
 		{
-			ft_putchar_fd('0', 1);
+			write(1, "0", 1);
 			count++;
 		}
 	}
 	return (count);
 }
 
-int		check_minus_int(char *str, int num, int size, t_lst list_flags)
+int		check_minus_int(t_lst list_flags, int size, char *str, int num)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (num < 0)
 		str++;
 	if (list_flags.minus)
 	{
-		count += print_int_precision(num, size, list_flags);
-		ft_putstr_fd(str, 1);
-		count += size;
-		count += check_add_int_width(num, size, list_flags);
+		count += check_precision_int(list_flags, size, num);
+		count += ft_putstr_fd(str, 1);
+		count += check_width_int(list_flags, size, num);
 	}
 	else if (!list_flags.minus)
 	{
-		count += check_add_int_width(num, size, list_flags);
-		count += print_int_precision(num, size, list_flags);
-		ft_putstr_fd(str, 1);
-		count += size;
+		count += check_width_int(list_flags, size, num);
+		count += check_precision_int(list_flags, size, num);
+		count += ft_putstr_fd(str, 1);
 	}
 	return (count);
 }
 
 int		ft_print_int(t_lst list_flags, va_list argv)
 {
+	int		num;
 	char	*str;
 	int		size;
 	int		count;
-	int		num;
 
 	num = va_arg(argv, int);
 	str = ft_itoa(num);
@@ -107,12 +102,12 @@ int		ft_print_int(t_lst list_flags, va_list argv)
 	count = 0;
 	if (list_flags.zero && (list_flags.minus || list_flags.precision >= 0))
 		list_flags.zero = 0;
-	if (list_flags.precision == 0 && str[0] == '0')
+	if (list_flags.precision == 0 && *str == '0')
 	{
 		count += ft_add_width(' ', list_flags.width);
 		return (count);
 	}
-	count += check_minus_int(str, num, size, list_flags);
+	count += check_minus_int(list_flags, size, str, num);
 	free(str);
 	return (count);
 }

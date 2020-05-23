@@ -6,7 +6,7 @@
 /*   By: ckakuna <ck@ck.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 08:59:53 by student           #+#    #+#             */
-/*   Updated: 2020/05/21 10:20:50 by student          ###   ########.fr       */
+/*   Updated: 2020/05/23 09:18:21 by ckakuna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,53 +28,46 @@ char	*ft_convert_pointer(char *array_hex, unsigned long long number)
 		str[count_num] = array_hex[number % size_hex];
 		number /= size_hex;
 	}
-	str[count_num] = array_hex[number % size_hex];
+	if (count_num == 0)
+		str[count_num] = array_hex[number % size_hex];
 	return (str);
 }
 
-int		ft_print_with_minus(char *str, int size, int count, t_lst list_flags)
+int		check_minus_ptr(t_lst list_flags, int size, char *str)
 {
-	ft_putstr_fd("0x", 1);
-	ft_putstr_fd(str, 1);
-	count += (size + 2);
-	if (list_flags.width > 1)
-	{
-		ft_add_width(' ', list_flags.width - (size + 2));
-		count += list_flags.width - (size + 2);
-	}
-	return (count);
-}
+	int	count;
 
-int		ft_print_without_minus(char *str, int size, int count, t_lst list_flags)
-{
-	if (list_flags.width > 1)
+	count = 0;
+	if (list_flags.minus)
 	{
-		ft_add_width(' ', list_flags.width - (size + 2));
-		count += list_flags.width - (size + 2);
+		count += ft_putstr_fd("0x", 1);
+		count += ft_putstr_fd(str, 1);
+		count += ft_add_width(' ', list_flags.width - (size + 2));
 	}
-	ft_putstr_fd("0x", 1);
-	ft_putstr_fd(str, 1);
-	count += size + 2;
+	else if (!list_flags.minus)
+	{
+		count += ft_add_width(' ', list_flags.width - (size + 2));
+		count += ft_putstr_fd("0x", 1);
+		count += ft_putstr_fd(str, 1);
+	}
 	return (count);
 }
 
 int		ft_print_ptr(t_lst list_flags, va_list argv)
 {
-	unsigned long long	number;
 	char				*str;
 	int					size;
 	int					count;
+	unsigned long long	num;
 
-	if (!(number = va_arg(argv, unsigned long long)))
+	num = va_arg(argv, unsigned long long);
+	if (!num)
 		str = ft_strdup("0");
 	else
-		str = ft_convert_pointer("0123456789abcdef", number);
-	count = 0;
+		str = ft_convert_pointer("0123456789abcdef", num);
 	size = ft_strlen(str);
-	if (list_flags.minus)
-		count += ft_print_with_minus(str, size, count, list_flags);
-	else if (!list_flags.minus)
-		count += ft_print_without_minus(str, size, count, list_flags);
+	count = 0;
+	count += check_minus_ptr(list_flags, size, str);
 	free(str);
 	return (count);
 }
